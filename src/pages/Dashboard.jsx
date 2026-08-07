@@ -18,9 +18,9 @@ const Dashboard = (props) => {
         <section>
             <header>
                 <h1>Welcome {props.user.username}!</h1>
-                <h2>View All the Users</h2>
+                {/* <h2>View All the Users</h2> */}
             </header>
-            {allUsers.map((user) => (
+            {/* {allUsers.map((user) => (
                 <div className="card">
                     <header>
                         <h1>
@@ -28,7 +28,7 @@ const Dashboard = (props) => {
                         </h1>
                     </header>
                 </div>
-            ))}
+            ))} */}
         </section>
     )
 }

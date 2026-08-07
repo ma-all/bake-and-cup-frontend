@@ -39,9 +39,10 @@ const SignInForm = (props) => {
 
             <form onSubmit={handleSubmit}>
                 Username:
-                <input type="text" name="username" value={formData.username} required onChange={handleChange} />
+                <input type="text" name="username" value={formData.username} required onChange={handleChange} className="signForm-input"/>
                 Password:
-                <input type="password" name="password" value={formData.password} required onChange={handleChange} />
+                <input type="password" name="password" value={formData.password} required onChange={handleChange} className="signForm-input"/>
+                <br/>
                 <div className="actions">
                     <button type="submit">Sign In</button>
                     <button type="button" onClick={() => navigate('/')}>Cancel</button>

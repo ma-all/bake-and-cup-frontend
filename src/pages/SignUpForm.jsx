@@ -44,11 +44,12 @@ const SignUpForm = (props) => {
             </header>
             <form onSubmit={handleSubmit}>
                 Username:
-                <input type="text" name="username" onChange={handleChange} value={formData.username} required />
+                <input type="text" name="username" onChange={handleChange} value={formData.username} required className="signForm-input" />
                 Password:
-                <input type="password" name="password" onChange={handleChange} value={formData.password} required />
+                <input type="password" name="password" onChange={handleChange} value={formData.password} required className="signForm-input" />
                 Confirm Password:
-                <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
+                <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required className="signForm-input" />
+                <br/>
                 <div className="actions">
                     <button type="submit" disabled={!isFormValid()}>Sign Up</button>
                     <button>Cancel</button>
