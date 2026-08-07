@@ -62,17 +62,6 @@ form {
   outline-color: var(--color-dark);
 }
 
-/* form input {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--color-primary);
-}
-
-form input:focus {
-  border-color: var(--color-primary);
-  outline: 2px solid var(--color-primary-soft);
-} */
-
 .actions {
   display: flex;
   gap: 12px;
@@ -92,7 +81,7 @@ button {
   border-radius: 8px;
   border: none;
   padding: 12px 18px;
-  font-weight: bold;
+  font-family: "Rum Raisin", sans-serif;
 }
 
 button:disabled {
