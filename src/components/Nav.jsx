@@ -15,7 +15,10 @@ const Nav = (props) => {
                 <ul>
                     <li>Welcome, {props.user.username}!</li>
                     <li>
-                        <Link to="/">Dashboard</Link>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to='/menu-items'>Menu</Link>
                     </li>
                     <li>
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>
