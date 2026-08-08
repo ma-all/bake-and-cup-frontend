@@ -159,3 +159,24 @@ button:disabled {
 .menu-card button:first-of-type {
   margin-top: auto;
 }
+
+.detail-container {
+  display: flex;
+  /* align-items: center; */
+  gap: 50px;
+}
+
+.details h3 {
+  font-size: 30px;
+  color: var(--color-light);
+}
+
+.details p {
+  color: var(--color-light);
+  font-size: 20px;
+}
+
+.img-detail {
+  width: 450px;
+  height: auto;
+}

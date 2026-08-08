@@ -13,14 +13,17 @@ const MenuDetails = (props) => {
     }
 
     return (
-        <>
-            <img src={menuItem.img} alt={menuItem.name} />
-            <h3>{menuItem.name}</h3>
-            <p>{menuItem.description}</p>
-            <p>{menuItem.category}</p>
-            <p>{menuItem.caffeine}</p>
-            <p>{menuItem.price}</p>
-        </>
+        <div className="detail-container">
+            <img src={menuItem.img} alt={menuItem.name} className="img-detail" />
+            <div className="details">
+                <h3>{menuItem.name}</h3>
+                <p>{menuItem.description}</p>
+                {/* <p>{menuItem.category}</p> */}
+                {/* i need to make this an if statement so this only shows up if the menu item is coffee */}
+                {/* <p>{menuItem.caffeine}</p> */}
+                <p>Price: {menuItem.price}</p>
+            </div>
+        </div>
     )
 }
 
