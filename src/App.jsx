@@ -2,10 +2,12 @@ import Nav from "./components/Nav"
 import SignUpForm from "./pages/SignUpForm"
 import './App.css'
 import { Routes, Route } from "react-router"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import SignInForm from "./pages/SignInForm"
 import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
+import Menu from "./pages/Menu"
+import * as MenuItemService from './services/menuItems'
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -18,6 +20,20 @@ const getUserFromToken = () => {
 const App = () => {
 
   const [user, setUser] = useState(getUserFromToken())
+
+  const [menuItems, setMenuItems] = useState([])
+
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const menuItemsData = await MenuItemService.index()
+        setMenuItems(menuItemsData)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchMenuItems()
+  }, [])
   
   return (
     <div>
@@ -27,6 +43,7 @@ const App = () => {
         <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
+        <Route path='/menu-items' element={<Menu menuItems={menuItems} />} />
       </Routes>
       </main>
     </div>
