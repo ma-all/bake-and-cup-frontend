@@ -8,6 +8,7 @@ import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
 import Menu from "./pages/Menu"
 import * as MenuItemService from './services/menuItems'
+import MenuDetails from "./pages/MenuDetails"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -44,6 +45,7 @@ const App = () => {
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
         <Route path='/menu-items' element={<Menu menuItems={menuItems} />} />
+        <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />}/>
       </Routes>
       </main>
     </div>

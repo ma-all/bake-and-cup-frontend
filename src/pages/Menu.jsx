@@ -8,11 +8,11 @@ const Menu = (props) => {
                     <div className="img-container">
                         <img src={item.img} alt={item.name} className="menu-img" />
                     </div>
-                    <Link to={`/menu-items/${item._id}`}>
                         <h2>{item.name}</h2>
-                    </Link>
                     <h3>Price: {item.price} BHD</h3>
-                    <button>View Details</button>
+                    <button>
+                        <Link to={`/menu-items/${item._id}`}> View Details </Link>
+                    </button>
                     <button>Add To Cart</button>
                 </div>
             ))}
