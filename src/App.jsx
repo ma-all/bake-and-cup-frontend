@@ -36,6 +36,10 @@ const App = () => {
   //for the cart 
 const [cartItems, setCartItems]=useState([])
 
+//for the shopping cart
+const [shoppingCart , setShoppingCart]=useState([])
+
+
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
@@ -95,6 +99,10 @@ const [cartItems, setCartItems]=useState([])
     }
   }
 
+  const handleAddToCart = (item)=>{
+    setShoppingCart([...shoppingCart, item])
+  }
+
   
   return (
     <div>
@@ -109,7 +117,10 @@ const [cartItems, setCartItems]=useState([])
 
 
         // cart 
-        <Route path="/orders" element={<Cart cartItems={cartItems} user={user}/>}/>
+        <Route path="/cart" element={<Cart cartItems={cartItems} user={user}/>}/>
+
+        //cart-2
+        <Route path="/cart" element={<Cart cartItems={shoppingCart}/>}/>
 
     
       </Routes>

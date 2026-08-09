@@ -20,6 +20,10 @@ const Nav = (props) => {
                     <li>
                         <Link to='/menu-items'>Menu</Link>
                     </li>
+                    <Link to='/orders'>Orders</Link>
+                    <li >
+                       <Link to='cart'>Cart</Link>  
+                    </li>
                     <li>
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>
                     </li>
