@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate} from "react-router"
 
 const Menu = (props) => {
 
@@ -7,10 +7,20 @@ const Menu = (props) => {
 
     const [search, setSearch] = useState('')
 
+    //for navigate
+    const navigate = useNavigate ()
+
+
     const categoryFiltered = categorySelected === 'All' ? props.menuItems : props.menuItems.filter((item) => item.category === categorySelected)
 
     const searchedItem = categoryFiltered.filter((item) => 
     item.name.toLowerCase().includes(search.toLowerCase()))
+
+    //for call 
+    const handleAddToCart=(item)=>{
+        props.handleAddToCart(item)
+        navigate('/cart')
+    }
 
     return (
         <>
@@ -46,7 +56,7 @@ const Menu = (props) => {
                         <button>
                             <Link to={`/menu-items/${item._id}`}> View Details </Link>
                         </button>
-                        <button>Add To Cart</button>
+                        <button onClick={()=> handleAddToCart(item)}>Add To Cart</button>
                     </div>
                 ))}
             </div>
