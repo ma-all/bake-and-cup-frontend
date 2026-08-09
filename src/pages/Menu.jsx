@@ -5,10 +5,19 @@ const Menu = (props) => {
 
     const [categorySelected, setCategorySelected] = useState('All')
 
+    const [search, setSearch] = useState('')
+
     const categoryFiltered = categorySelected === 'All' ? props.menuItems : props.menuItems.filter((item) => item.category === categorySelected)
+
+    const searchedItem = categoryFiltered.filter((item) => 
+    item.name.toLowerCase().includes(search.toLowerCase()))
 
     return (
         <>
+        <div className="search-menu">
+            <input type='text' value={search} onChange={(e) => setSearch(e.target.value)} className="search-input" />
+        </div>
+        <br/>
             <div className="menu-filter">
                 {props.categories.map((category) =>
                 <>
@@ -20,9 +29,14 @@ const Menu = (props) => {
                 </>
                 )}
             </div>
+            <br/>
+
+            {searchedItem.length === 0 ? (
+                <p>No items found</p>
+            ) : (
 
             <div className="menu-container">
-                {categoryFiltered.map((item) => (
+                {searchedItem.map((item) => (
                     <div key={item._id} className="menu-card">
                         <div className="img-container">
                             <img src={item.img} alt={item.name} className="menu-img" />
@@ -36,6 +50,7 @@ const Menu = (props) => {
                     </div>
                 ))}
             </div>
+            )}
         </>
     )
 }
