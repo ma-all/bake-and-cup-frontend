@@ -8,6 +8,7 @@ import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
 import Menu from "./pages/Menu"
 import * as MenuItemService from './services/menuItems'
+import MenuDetails from "./pages/MenuDetails"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -23,6 +24,8 @@ const App = () => {
 
   const [menuItems, setMenuItems] = useState([])
 
+  const categories = ['All', 'Coffee', 'Non-Coffee', 'Pastry']
+
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
@@ -34,6 +37,7 @@ const App = () => {
     }
     fetchMenuItems()
   }, [])
+
   
   return (
     <div>
@@ -43,7 +47,8 @@ const App = () => {
         <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
-        <Route path='/menu-items' element={<Menu menuItems={menuItems} />} />
+        <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} />} />
+        <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />}/>
       </Routes>
       </main>
     </div>
