@@ -16,7 +16,7 @@ const Menu = (props) => {
     const searchedItem = categoryFiltered.filter((item) => 
     item.name.toLowerCase().includes(search.toLowerCase()))
 
-    //for call 
+    // for call 
     const handleAddToCart=(item)=>{
         props.handleAddToCart(item)
         navigate('/cart')

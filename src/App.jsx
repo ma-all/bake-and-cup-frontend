@@ -12,7 +12,7 @@ import MenuDetails from "./pages/MenuDetails"
 
 //for the cart
 import Cart from "./pages/Cart"
-import { create, update } from "./services/orderService"
+import * as ordersService from "./services/orderService"
 
 
 
@@ -37,7 +37,7 @@ const App = () => {
 const [cartItems, setCartItems]=useState([])
 
 //for the shopping cart
-const [shoppingCart , setShoppingCart]=useState([])
+// const [shoppingCart , setShoppingCart]=useState([])
 
 
   useEffect(() => {
@@ -52,31 +52,33 @@ const [shoppingCart , setShoppingCart]=useState([])
     fetchMenuItems()
   }, [])
 
+  const handleAddToCart = (item)=>{
+    setCartItems([...cartItems, item])
+  }
+
   //create place order 
-  const handlePlaceOrder = async(MenuItemService, totalPrice, totalCaffeine)=>{
+  const handlePlaceOrder = async(totalPrice, totalCaffeine, navigate)=>{
     try {
       const orderData = {
         items: items.map((item)=> item._id),
         totalPrice,
-        totalCaffeine
+        totalCaffeine,
       }
-      await create (orderData)
+      await ordersService.create(orderData)
       setCartItems([])
-      Navigate('/orders')
+      Navigate('/order')
       
     } catch (error) {
       console.log('Failed to place order:', error)
-      
     }
   }
-
 
   //update orders 
   const handleUpdateItem = async(itemId, updatedData)=>{
     try {
       const updateItem = await update(itemId, updatedData)
       setCartItems(
-        cartItems.map((item)=>(item._id === itemId ? updateItem:item))
+        cartItems.map((item)=>(item._id === itemId ? updateItem : item))
       )
       
     } catch (error) {
@@ -99,10 +101,6 @@ const [shoppingCart , setShoppingCart]=useState([])
     }
   }
 
-  const handleAddToCart = (item)=>{
-    setShoppingCart([...shoppingCart, item])
-  }
-
   
   return (
     <div>
@@ -112,15 +110,15 @@ const [shoppingCart , setShoppingCart]=useState([])
         <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
-        <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} />} />
+        <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} handleAddToCart={handleAddToCart} />} />
         <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />}/>
 
 
         // cart 
-        <Route path="/cart" element={<Cart cartItems={cartItems} user={user}/>}/>
+        <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} user={user}/>}/>
 
         //cart-2
-        <Route path="/cart" element={<Cart cartItems={shoppingCart}/>}/>
+        {/* <Route path="/cart" element={<Cart cartItems={shoppingCart}/>}/> */}
 
     
       </Routes>
