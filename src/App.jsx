@@ -11,6 +11,7 @@ import * as MenuItemService from './services/menuItems'
 import MenuDetails from "./pages/MenuDetails"
 import Cart from "./pages/Cart"
 import * as ordersService from "./services/orderService"
+import Checkout from "./pages/Checkout"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -47,16 +48,18 @@ const App = () => {
   }
 
   //create place order 
-  const handlePlaceOrder = async (totalPrice, totalCaffeine, navigate) => {
+  const handlePlaceOrder = async (totalPrice, totalCaffeine, paymentMethod) => {
     try {
       const orderData = {
         items: cartItems.map((item) => item._id),
         totalPrice,
         totalCaffeine,
+        paymentMethod,
       }
-      await ordersService.create(orderData)
+      const orderCreated = await ordersService.create(orderData)
       setCartItems([])
-      navigate('/order')
+      // navigate('/order')
+      return orderCreated
 
     } catch (error) {
       console.log('Failed to place order:', error)
@@ -109,6 +112,7 @@ const App = () => {
           <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} cartItems={cartItems} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} />} />
           <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} user={user} />} />
+          <Route path='checkout' element={<Checkout cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} />} />
         </Routes>
       </main>
     </div>

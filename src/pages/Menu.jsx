@@ -23,7 +23,7 @@ const Menu = (props) => {
         <>
             <div className="search-menu">
                 <label>Search</label>
-                <input type='text' value={search} onChange={(e) => setSearch(e.target.value)} className="search-input" />
+                <input type='text' value={search} onChange={(event) => setSearch(event.target.value)} className="search-input" />
             </div>
             <br />
             <div className="menu-filter">
