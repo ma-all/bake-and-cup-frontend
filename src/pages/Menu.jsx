@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router"
+import { Search } from 'lucide-react'
 
 const Menu = (props) => {
 
@@ -22,7 +23,7 @@ const Menu = (props) => {
     return (
         <>
             <div className="search-menu">
-                <label>Search</label>
+                <Search className="search" />
                 <input type='text' value={search} onChange={(event) => setSearch(event.target.value)} className="search-input" />
             </div>
             <br />

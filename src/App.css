@@ -223,7 +223,7 @@ button:disabled {
   line-height: 28px;
   align-items: center;
   position: relative;
-  max-width: 190px;
+  max-width: 250px;
 }
 
 .search-input {
@@ -232,14 +232,21 @@ button:disabled {
   width: 100%;
   height: 40px;
   line-height: 28px;
-  padding: 0 1rem;
-  padding-left: 2.5rem;
-  border: 2px solid transparent;
+  padding: 0 38px 0 16px;
+  padding-left: 24px;
   outline: none;
-  background-color: #f3f3f4;
-  color: #0d0c22;
+  background-color: var(--color-light);
+  color: var(--color-card);
   transition: 0.3s ease;
+  font-size: 20px;
 }
+
+.search {
+  color: var(--color-dark);
+  right: 12px;
+  position: absolute;
+}
+
 
 .cart-page {
   display: flex;
