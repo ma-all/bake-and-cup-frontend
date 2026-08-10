@@ -41,7 +41,7 @@ const Cart = (props) => {
 
     return (
         <div className="cart-page">
-            <div class='cart-container'>
+            <div className='cart-container'>
                 <div className="cartItems-titles">
                     <p>Product</p>
                     <p>Price</p>
@@ -55,7 +55,7 @@ const Cart = (props) => {
                             </div>
                             <p>{item.name}</p>
                         </div>
-                        <p>{(Number(item.price) * item.quantity).toFixed(1)} BHD</p>
+                        <p>{(Number(item.price) * item.quantity).toFixed(2)} BHD</p>
                         <div className="quantity-item">
                             <button onClick={() => props.handleDeleteItem(item._id)}> - </button>
                             <p>{item.quantity}</p>
@@ -74,9 +74,9 @@ const Cart = (props) => {
                 {errorMessage && <p>{errorMessage}</p>}
 
                 <div className="cart-link-button">
-                        <button onClick={() => navigate('/menu-items')}>Add more items </button>
+                    <button onClick={() => navigate('/menu-items')}>Add more items </button>
 
-                    <button onClick={onSubmit}>Place Order</button>
+                    <button onClick={() => navigate('/checkout')}>Place Order</button>
                 </div>
             </div>
 
