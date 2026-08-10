@@ -79,13 +79,13 @@ const deleteOrder = async (orderId) => {
 }
 
 const createPayment = async (payAmount) => {
-    const res = await fetch(`${BASE_URL}/create/payment`, {
+    const res = await fetch(`${BASE_URL}/create-payment`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
     
         },
-        body: JSON.stringify(payAmount)
+        body: JSON.stringify({ payAmount })
     })
     const data = await res.json()
 
