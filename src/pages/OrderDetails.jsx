@@ -4,8 +4,8 @@ import * as orderService from '../services/orderService';
 
 const OrderDetails = () => {
   const { orderId } = useParams();
-  
-  
+
+
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ const OrderDetails = () => {
     const fetchOrder = async () => {
       try {
         const data = await orderService.show(orderId);
-        
+
         setOrder(data);
       } catch (err) {
         console.error(err);
@@ -29,26 +29,45 @@ const OrderDetails = () => {
 
   return (
     <div className="detail-container">
-      <h2>Order Details</h2>
-      <p><strong>Order ID:</strong> {order._id}</p>
-      <p><strong>Total Price:</strong> {Number(order.totalPrice || 0).toFixed(2)} BHD</p>
-      <p><strong>Total Caffeine:</strong> {order.totalCaffeine || 0}</p>
+      <div className="order-header">
+        <h2 className="order-titel">Order Details</h2>
+        <p className="summary-item">
+          <strong>Order ID:</strong> {order._id}
+        </p>
+        <p className="summary-item">
+          <strong>Total Price:</strong> {Number(order.totalPrice || 0).toFixed(2)} BHD
+        </p>
+        <p className="summary-item">
+          <strong>Total Caffeine:</strong> {order.totalCaffeine || 0}
+        </p>
+      </div>
 
-      <h3>Items:</h3>
-      {order.items && order.items.length > 0 ? (
-        order.items.map((item, index) => (
-          <div key={item._id || index} className="order-item-card">
-            {item.img && <img src={item.img} alt={item.name} className="menu-img" />}
-            <p><strong>{item.name}</strong></p>
-            {item.price && <p>Price: {item.price} BHD</p>}
+      <div className="order-items-section">
+        <h3>Items:</h3>
+        {order.items && order.items.length > 0 ? (
+          <div className="items-list">
+            {order.items.map((item) => (
+              <div key={item._id} className="order-item-card">
+                <div className="img-container">
+                  <img src={item.img} alt={item.name} className="menu-img" />
+                </div>
+
+                <div className="item-info">
+                  <p className="item-name"><strong>{item.name}</strong></p>
+                  {item.price && <p>Price: {item.price} BHD</p>}
+                </div>
+              </div>
+            ))}
           </div>
-        ))
-      ) : (
-        <p>No items in this order.</p>
-      )}
+        ) : (
+          <p className="emty-message">No items in this order.</p>
+        )}
+      </div>
 
       <br />
-      <Link to="/orders">← Back to Orders</Link>
+      <div className="order-footer">
+        <Link to="/orders"> ← Back to Orders</Link>
+      </div>
     </div>
   );
 };
