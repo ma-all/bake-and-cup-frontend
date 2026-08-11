@@ -109,7 +109,7 @@ const App = () => {
           <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
           <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
           <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} cartItems={cartItems} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} />} />
-          <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />} />
+          <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} user={user} />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} user={user} />} />
           <Route path='checkout' element={<Checkout cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} />} />
           <Route path="/orders" element={<Orders />} />
