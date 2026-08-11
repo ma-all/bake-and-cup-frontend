@@ -12,6 +12,8 @@ import MenuDetails from "./pages/MenuDetails"
 import Cart from "./pages/Cart"
 import * as ordersService from "./services/orderService"
 import Checkout from "./pages/Checkout"
+import Orders from "./pages/Orders"
+import OrderDetails from './pages/OrderDetails'
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -92,9 +94,6 @@ const App = () => {
         setCartItems(updatedCart)
       }
 
-      // await deleteOrder(itemId)
-      // setCartItems(cartItems.filter((item) => item._id !== itemId))
-
     } catch (error) {
       console.log('Failed to remove item', error)
     }
@@ -113,6 +112,8 @@ const App = () => {
           <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />} />
           <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} user={user} />} />
           <Route path='checkout' element={<Checkout cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:orderId" element={<OrderDetails />} />
         </Routes>
       </main>
     </div>
