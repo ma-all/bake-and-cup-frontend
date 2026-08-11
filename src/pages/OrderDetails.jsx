@@ -24,8 +24,8 @@ const OrderDetails = () => {
     fetchOrder();
   }, [orderId]);
 
-  if (loading) return <p>Loading order details...</p>;
-  if (!order) return <p>Order not found.</p>;
+  if (loading) return <p>Loading order details...</p>
+  if (!order) return <p>Order not found.</p>
 
   return (
     <div className="detail-container">
@@ -53,4 +53,4 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+export default OrderDetails

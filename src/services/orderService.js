@@ -1,7 +1,12 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/orders`;
 
 const index = async () => {
-    const res = await fetch(BASE_URL)
+    const res = await fetch(BASE_URL, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+    })
+    
     const data = await res.json()
 
     if (!res.ok) {
@@ -12,7 +17,11 @@ const index = async () => {
 }
 
 const show = async (orderId) => {
-    const res = await fetch(`${BASE_URL}/${orderId}`)
+    const res = await fetch(`${BASE_URL}/${orderId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+    })
     const data = await res.json()
 
     if (!res.ok) {
@@ -29,8 +38,8 @@ const create = async (formData) => {
     const res = await fetch(BASE_URL, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
 
         },
         body: JSON.stringify(formData)
@@ -49,6 +58,7 @@ const update = async (orderId, formData) => {
     const res = await fetch(`${BASE_URL}/${orderId}`, {
         method: 'PUT',
         headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-type': 'application/json',
         },
 
@@ -66,7 +76,11 @@ const update = async (orderId, formData) => {
 
 const deleteOrder = async (orderId) => {
     const res = await fetch(`${BASE_URL}/${orderId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+        },
     })
 
     const data = await res.json()
