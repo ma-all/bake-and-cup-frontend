@@ -24,15 +24,22 @@ const Cart = (props) => {
         }
 
         setErrorMessage('')
-        if (handlePlaceOrder) {
-            await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
 
-        }
+   setErrorMessage('')
+  if (props.handlePlaceOrder) {
+    await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
+  }
+  
+
+        // if (handlePlaceOrder) {
+        //     await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
+
+        // }
     }
 
     return (
         <div>
-            <div class='cart-container'>
+            <div className='cart-container'>
             {props.cartItems.map((item) => (
                 <div key={item._id}>
                     <div className="img-container">
@@ -44,13 +51,15 @@ const Cart = (props) => {
             </div>
 
             <div>
+                
                 <p>Total Caffeine {totalCaffeine}</p>
                 <p>Total Price {totalPrice.toFixed(2)} BHD</p>
-
+                
                 {errorMessage && <p>{errorMessage}</p>}
 
                 <Link to="/menu-items">Add more item</Link>
-                <button onClick={onSubmit}>Place Order</button>
+                <button  onClick={onSubmit}>Place Order</button>
+             
             </div>
 
         </div>

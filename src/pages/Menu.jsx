@@ -31,11 +31,13 @@ const Menu = (props) => {
             <div className="menu-filter">
                 {props.categories.map((category) =>
                 <>
+               
                     <button key={category}
                         onClick={() => setCategorySelected(category)} className="filter-btn">
                         {category}
                     </button>
                     <br/>
+                   
                 </>
                 )}
             </div>

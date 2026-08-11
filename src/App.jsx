@@ -10,9 +10,13 @@ import Menu from "./pages/Menu"
 import * as MenuItemService from './services/menuItems'
 import MenuDetails from "./pages/MenuDetails"
 
-//for the cart
+// Orders components & service
+import Orders from "./pages/Orders"
+import OrderDetails from './pages/OrderDetails'
+import * as orderService from './services/orderService'
+
+// Cart component
 import Cart from "./pages/Cart"
-import * as ordersService from "./services/orderService"
 
 
 
@@ -31,7 +35,6 @@ const App = () => {
   const [menuItems, setMenuItems] = useState([])
 
   const categories = ['All', 'Coffee', 'Non-Coffee', 'Pastry']
-
 
   //for the cart 
 const [cartItems, setCartItems]=useState([])
@@ -57,16 +60,29 @@ const [cartItems, setCartItems]=useState([])
   }
 
   //create place order 
-  const handlePlaceOrder = async(totalPrice, totalCaffeine, navigate)=>{
+  const handlePlaceOrder = async( totalPrice, totalCaffeine, navigate)=>{
     try {
       const orderData = {
-        items: items.map((item)=> item._id),
+        items: cartItems,
+        // items: cartItems.map((item) => item._id),
+        // items: items.map((item)=> item._id),
         totalPrice,
         totalCaffeine,
+
       }
-      await ordersService.create(orderData)
+      // await ordersService.create(orderData)
+      const newOrder = await orderService.create(orderData)
       setCartItems([])
-      Navigate('/order')
+      // Navigate('/order')
+     
+if (newOrder && newOrder._id) {
+      navigate(`/orders/${newOrder._id}`)
+    } else {
+      navigate('/orders') // Fallback if no ID returned
+    }
+
+      //redirect user to orders list
+      // navigate('/orders')
       
     } catch (error) {
       console.log('Failed to place order:', error)
@@ -117,9 +133,10 @@ const [cartItems, setCartItems]=useState([])
         // cart 
         <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} user={user}/>}/>
 
-        //cart-2
-        {/* <Route path="/cart" element={<Cart cartItems={shoppingCart}/>}/> */}
-
+        //orders
+       <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:orderId" element={<OrderDetails />} />
+        
     
       </Routes>
       </main>
