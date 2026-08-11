@@ -63,9 +63,9 @@ const MenuDetails = (props) => {
                 <div className="details">
                     <h3>{menuItem.name}</h3>
                     <p>{menuItem.description}</p>
-                    {/* <p>{menuItem.category}</p> */}
-                    {/* i need to make this an if statement so this only shows up if the menu item is coffee */}
-                    {/* <p>{menuItem.caffeine}</p> */}
+                    {menuItem.category === 'Coffee' && (
+                        <p>Caffeine: {menuItem.caffeine} mg</p>
+                    )}
                     <p>Price: {menuItem.price}</p>
                 </div>
             </div>
