@@ -45,6 +45,10 @@ const App = () => {
     fetchMenuItems()
   }, [])
 
+  useEffect(() => {
+    setCartItems([])
+  }, [user])
+
   const handleAddToCart = (item) => {
     setCartItems([...cartItems, item])
   }
