@@ -102,7 +102,7 @@ const App = () => {
 
   return (
     <div>
-      <Nav user={user} setUser={setUser} />
+      <Nav user={user} setUser={setUser} cartItems={cartItems} />
       <main className="app-main">
         <Routes>
           <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
