@@ -51,6 +51,7 @@ const Checkout = (props) => {
     const [orderCreatedId, setOrderCreatedId] = useState(null)
 
     const [clientSecret, setClientSecret] = useState('')
+    const [item,setItem]=useState('')
 
     const navigate = useNavigate()
 
@@ -77,14 +78,25 @@ const Checkout = (props) => {
         }
     }, [paymentMethod, totalPrice])
 
-    const orderCompleted = async () => {
-        const newOrder = await props.handlePlaceOrder(totalPrice, totalCaffeine, paymentMethod)
 
-        if (newOrder && newOrder._id) {
-            setOrderCreatedId(newOrder._id)
-        }
-        setOrderPlaced(true)
+
+
+
+const orderCompleted = async () => {
+    // Make sure props.cartItems is passed here!
+    const newOrder = await props.handlePlaceOrder(
+        props.cartItems, 
+        totalPrice, 
+        totalCaffeine, 
+        paymentMethod
+    );
+
+    if (newOrder && (newOrder._id || newOrder.id)) {
+        setOrderCreatedId(newOrder._id || newOrder.id);
+        setOrderPlaced(true);
     }
+};
+
 
     //this should only show if the user pays and it goes trough
     if (orderPlaced) {
@@ -111,6 +123,7 @@ const Checkout = (props) => {
                         <div className="summary-row">
                             <p className="summary-label">Total Items: {totalItems}</p>
                             <p className="summary-value">Total Items: {totalPrice.toFixed(2)} BHD</p>
+                            <p className="summary-label">Items : {item}</p>
                             <br />
                         </div>
 

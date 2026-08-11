@@ -13,7 +13,7 @@ const OrderDetails = () => {
     const fetchOrder = async () => {
       try {
         const data = await orderService.show(orderId);
-
+        console.log('see if data is loading', data)
         setOrder(data);
       } catch (err) {
         console.error(err);
@@ -46,30 +46,39 @@ const OrderDetails = () => {
         <h3>Items:</h3>
         {order.items && order.items.length > 0 ? (
           <div className="items-list">
-            {order.items.map((item) => (
-              <div key={item._id} className="order-item-card">
-                <div className="img-container">
-                  <img src={item.img} alt={item.name} className="menu-img" />
-                </div>
+            {order.items.map((item, index) => (
+              <div key={item._id || index} className="order-item-card">
 
                 <div className="item-info">
-                  <p className="item-name"><strong>{item.name}</strong></p>
-                  {item.price && <p>Price: {item.price} BHD</p>}
+                  <p className="item-name">
+
+
+                    {/* <strong>{item.name}</strong> */}
+
+
+                  <strong>{typeof item === 'string' ? item : item.name}</strong>
+
+                  </p>
+                 
                 </div>
               </div>
             ))}
           </div>
         ) : (
+
           <p className="emty-message">No items in this order.</p>
         )}
       </div>
+      
 
       <br />
       <div className="order-footer">
         <Link to="/orders"> ← Back to Orders</Link>
       </div>
     </div>
+  
   );
+  
 };
 
 export default OrderDetails
