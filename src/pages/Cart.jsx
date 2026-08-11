@@ -7,12 +7,12 @@ const Cart = (props) => {
     const [errorMessage, setErrorMessage] = useState('')
 
     const groupCartItems = props.cartItems ? props.cartItems.reduce((amount, item) => {
-        const current = amount.find((amtItem) => 
-        amtItem._id === item._id)
+        const current = amount.find((amtItem) =>
+            amtItem._id === item._id)
         if (current) {
             current.quantity += 1
         } else {
-            amount.push({...item, quantity: 1})
+            amount.push({ ...item, quantity: 1 })
         }
         return amount
     }, []) : []
@@ -35,17 +35,7 @@ const Cart = (props) => {
         setErrorMessage('')
         if (props.handlePlaceOrder) {
             await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
-
-   setErrorMessage('')
-  if (props.handlePlaceOrder) {
-    await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
-  }
-  
-
-        // if (handlePlaceOrder) {
-        //     await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
-
-        // }
+        }
     }
 
     return (
@@ -79,7 +69,7 @@ const Cart = (props) => {
                 <p>Total Items: {props.cartItems ? props.cartItems.length : 0}</p>
                 <p>Total Caffeine {totalCaffeine}</p>
                 <p>Total Price {totalPrice.toFixed(2)} BHD</p>
-                
+
                 {errorMessage && <p>{errorMessage}</p>}
 
                 <div className="cart-link-button">
@@ -92,5 +82,6 @@ const Cart = (props) => {
         </div>
     )
 }
+
 
 export default Cart
