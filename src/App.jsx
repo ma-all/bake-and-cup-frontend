@@ -49,30 +49,31 @@ const App = () => {
     setCartItems([...cartItems, item])
   }
 
- 
-const handlePlaceOrder = async (cartItems, totalPrice, totalCaffeine, paymentMethod) => {
-  try {
-const itemIds = cartItems.map((item) => item._id || item.id);
-    
-    console.log("Cart items array being sent to backend:", itemIds);
-    
 
-    const orderData = {
-      items: cartItems.map((item) => item._id),
-      totalPrice,
-      totalCaffeine,
-      paymentMethod,
+  const handlePlaceOrder = async (cartItems, totalPrice, totalCaffeine, paymentMethod) => {
+    try {
+      const itemIds = cartItems.map((item) => item._id || item.id);
+
+      console.log("Cart items array being sent to backend:", itemIds);
+
+
+      const orderData = {
+        user: user._id,
+        items: cartItems.map((item) => item._id),
+        totalPrice,
+        totalCaffeine,
+        paymentMethod,
+      }
+
+      const orderCreated = await ordersService.create(orderData)
+      setCartItems([])
+      return orderCreated
+
+    } catch (error) {
+      console.log('Failed to place order:', error)
+      return null
     }
-    
-    const orderCreated = await ordersService.create(orderData)
-    setCartItems([])
-    return orderCreated 
-
-  } catch (error) {
-    console.log('Failed to place order:', error)
-    return null 
   }
-}
 
 
 
