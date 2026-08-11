@@ -633,3 +633,19 @@ button:disabled {
 .delete-btn:hover {
   background-color: #883A30;
 }
+
+.name-container {
+  display: grid;
+  position: relative;
+  place-items: center;
+  min-height: 80vh;
+}
+
+.name-container h1 {
+  color: var(--color-light);
+  text-align: center;
+  font-size: 220px;
+  font-weight: 900;
+  line-height: 0.85;
+  margin: 0;
+}
