@@ -609,13 +609,12 @@ button:disabled {
 
 .view-details-link {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: #7B4255;
+  color: var(--color-card);
   text-decoration: none;
 }
 
 .view-details-link:hover {
-  color: #EBA7C3;
+  color: var(--color-dark);
   text-decoration: underline;
 }
 
@@ -635,10 +634,9 @@ button:disabled {
 }
 
 .name-container {
-  display: grid;
+  display: flex;
   position: relative;
   place-items: center;
-  min-height: 80vh;
 }
 
 .name-container h1 {
@@ -646,6 +644,5 @@ button:disabled {
   text-align: center;
   font-size: 220px;
   font-weight: 900;
-  line-height: 0.85;
-  margin: 0;
+  line-height: 0.88;
 }

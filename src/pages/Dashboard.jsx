@@ -18,7 +18,7 @@ const Dashboard = (props) => {
     return (
         <div className="home-page">
             <header>
-                {/* <h1>Welcome {props.user.username} to </h1> */}
+                <center><h1>Welcome {props.user.username}!</h1></center>
                 {/* <h2>View All the Users</h2> */}
             </header>
            <div className="name-container">
@@ -26,8 +26,6 @@ const Dashboard = (props) => {
                 <br/>
                 & Cup
             </h1>
-
-            {/* <img src={almondCrossiant} alt='almond crossiant' className="home-img" /> */}
 
            </div>
         </div>

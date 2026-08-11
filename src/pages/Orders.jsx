@@ -72,7 +72,7 @@ const Orders = () => {
                 </div>
 
                 <div className="order-actions">
-                  <Link to={`/orders/${order._id}`}>View Details</Link>
+                  <Link to={`/orders/${order._id}`} className="view-details-link">View Details</Link>
                   <button onClick={() => handleDelete(order._id)}>Delete Order</button>
 
                 </div>
