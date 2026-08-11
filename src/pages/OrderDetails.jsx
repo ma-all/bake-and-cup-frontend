@@ -52,11 +52,7 @@ const OrderDetails = () => {
                 <div className="item-info">
                   <p className="item-name">
 
-
-                    {/* <strong>{item.name}</strong> */}
-
-
-                  <strong>{typeof item === 'string' ? item : item.name}</strong>
+                  <strong>{item.name || item}</strong>
 
                   </p>
                  
