@@ -80,10 +80,29 @@ const deleteOrder = async (orderId) => {
     return data
 
 }
+
+const createPayment = async (payAmount) => {
+    const res = await fetch(`${BASE_URL}/create-payment`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+    
+        },
+        body: JSON.stringify({ payAmount })
+    })
+    const data = await res.json()
+
+    if (!res.ok) {
+        throw new Error(`${res.status}: ${data.message}`)
+    }
+    return data
+}
+
 export {
     index,
     show,
     update,
     create,
-    deleteOrder
+    deleteOrder,
+    createPayment
 }

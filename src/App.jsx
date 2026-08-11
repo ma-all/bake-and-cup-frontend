@@ -9,16 +9,9 @@ import Dashboard from "./pages/Dashboard"
 import Menu from "./pages/Menu"
 import * as MenuItemService from './services/menuItems'
 import MenuDetails from "./pages/MenuDetails"
-
-// Orders components & service
-import Orders from "./pages/Orders"
-import OrderDetails from './pages/OrderDetails'
-import * as orderService from './services/orderService'
-
-// Cart component
 import Cart from "./pages/Cart"
-
-
+import * as ordersService from "./services/orderService"
+import Checkout from "./pages/Checkout"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -36,12 +29,7 @@ const App = () => {
 
   const categories = ['All', 'Coffee', 'Non-Coffee', 'Pastry']
 
-  //for the cart 
-const [cartItems, setCartItems]=useState([])
-
-//for the shopping cart
-// const [shoppingCart , setShoppingCart]=useState([])
-
+  const [cartItems, setCartItems] = useState([])
 
   useEffect(() => {
     const fetchMenuItems = async () => {
@@ -55,90 +43,77 @@ const [cartItems, setCartItems]=useState([])
     fetchMenuItems()
   }, [])
 
-  const handleAddToCart = (item)=>{
+  const handleAddToCart = (item) => {
     setCartItems([...cartItems, item])
   }
 
   //create place order 
-  const handlePlaceOrder = async( totalPrice, totalCaffeine, navigate)=>{
+  const handlePlaceOrder = async (totalPrice, totalCaffeine, paymentMethod) => {
     try {
       const orderData = {
-        items: cartItems,
-        // items: cartItems.map((item) => item._id),
-        // items: items.map((item)=> item._id),
+        items: cartItems.map((item) => item._id),
         totalPrice,
         totalCaffeine,
-
+        paymentMethod,
       }
-      // await ordersService.create(orderData)
-      const newOrder = await orderService.create(orderData)
+      const orderCreated = await ordersService.create(orderData)
       setCartItems([])
-      // Navigate('/order')
-     
-if (newOrder && newOrder._id) {
-      navigate(`/orders/${newOrder._id}`)
-    } else {
-      navigate('/orders') // Fallback if no ID returned
-    }
+      // navigate('/order')
+      return orderCreated
 
-      //redirect user to orders list
-      // navigate('/orders')
-      
     } catch (error) {
       console.log('Failed to place order:', error)
     }
   }
 
   //update orders 
-  const handleUpdateItem = async(itemId, updatedData)=>{
+  const handleUpdateItem = async (itemId, updatedData) => {
     try {
       const updateItem = await update(itemId, updatedData)
       setCartItems(
-        cartItems.map((item)=>(item._id === itemId ? updateItem : item))
+        cartItems.map((item) => (item._id === itemId ? updateItem : item))
       )
-      
+
     } catch (error) {
-      console.log('Faild to update item ',error)
-      
+      console.log('Faild to update item ', error)
+
     }
   }
 
 
   //delete 
-  const handleDeleteItem = async (itemId)=>{
+  const handleDeleteItem = async (itemId) => {
     try {
+      const cartItemIndex = cartItems.findIndex((item) => item._id === itemId)
 
-      await deleteOrder(itemId)
-      setCartItems(cartItems.filter((item)=> item._id !== itemId))
-      
+      if (cartItemIndex !== -1) {
+        const updatedCart = [...cartItems]
+        updatedCart.splice(cartItemIndex, 1)
+        setCartItems(updatedCart)
+      }
+
+      // await deleteOrder(itemId)
+      // setCartItems(cartItems.filter((item) => item._id !== itemId))
+
     } catch (error) {
-      console.log('Faild to delet item', error)
-      
+      console.log('Failed to remove item', error)
     }
   }
 
-  
+
   return (
     <div>
       <Nav user={user} setUser={setUser} />
       <main className="app-main">
-      <Routes>
-        <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
-        <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
-        <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
-        <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} handleAddToCart={handleAddToCart} />} />
-        <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />}/>
-
-
-        // cart 
-        <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} user={user}/>}/>
-
-        //orders
-       <Route path="/orders" element={<Orders />} />
-          <Route path="/orders/:orderId" element={<OrderDetails />} />
-        
-    
-      </Routes>
+        <Routes>
+          <Route path='/' element={user ? <Dashboard user={user} /> : <Landing />} />
+          <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
+          <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
+          <Route path='/menu-items' element={<Menu menuItems={menuItems} categories={categories} cartItems={cartItems} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} />} />
+          <Route path='/menu-items/:menuItemId' element={<MenuDetails menuItems={menuItems} />} />
+          <Route path="/cart" element={<Cart cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} handleAddToCart={handleAddToCart} handleDeleteItem={handleDeleteItem} user={user} />} />
+          <Route path='checkout' element={<Checkout cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} />} />
+        </Routes>
       </main>
     </div>
   )
