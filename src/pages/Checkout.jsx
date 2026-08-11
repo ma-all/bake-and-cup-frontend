@@ -18,7 +18,7 @@ const StripeForm = (props) => {
             return
 
         setOrderProcessing(true)
-        
+
         const processed = await stripe.confirmPayment({
             elements,
             redirect: 'if_required'
@@ -56,11 +56,11 @@ const Checkout = (props) => {
 
     const totalItems = props.cartItems ? props.cartItems.length : 0
 
-    const totalPrice = props.cartItems ? props.cartItems.reduce((total, item) => 
-    total + (Number(item.price) || 0), 0) : 0
+    const totalPrice = props.cartItems ? props.cartItems.reduce((total, item) =>
+        total + (Number(item.price) || 0), 0) : 0
 
-    const totalCaffeine = props.cartItems ? props.cartItems.reduce((total, item) => 
-    total + (Number(item.caffeine) || 0), 0) : 0
+    const totalCaffeine = props.cartItems ? props.cartItems.reduce((total, item) =>
+        total + (Number(item.caffeine) || 0), 0) : 0
 
     useEffect(() => {
         const getClientSecret = async () => {
@@ -101,31 +101,51 @@ const Checkout = (props) => {
 
     return (
         <>
-            <h2>Checkout</h2>
-            <br/>
-            <h3>Order Summary</h3>
-            <p>Total Items: {totalItems}</p>
-            <p>Total Items: {totalPrice.toFixed(2)} BHD</p>
-            <br/>
+            <div className="checkout-container">
+                <h2 className="checkout-title">Checkout</h2>
+                <br />
+                <div className="order-summary-card">
+                    <h3 className="summary-title">Order Summary</h3>
 
-            <h3>Choose Payment MEthod:</h3>
+                    <div className="summary-details">
+                        <div className="summary-row">
+                            <p className="summary-label">Total Items: {totalItems}</p>
+                            <p className="summary-value">Total Items: {totalPrice.toFixed(2)} BHD</p>
+                            <br />
+                        </div>
 
-            Cash on Delivery
-            <input type='radio' name='payment' value='cash' checked={paymentMethod === 'cash'} onChange={() => setPaymentMethod('cash')} />
 
-            Online Payment (Stripe)
-            <input type='radio' name='payment' value='online' checked={paymentMethod === 'online'} onChange={() => setPaymentMethod('online')} />
+                    <div className="payment-method-block">
+                        <h3 className="section-title">Choose Payment Method:</h3>
+                        <div className="payment-field">
+                       <span className="payment-text"> 💵 Cash on Delivery</span>
+                       <input type='radio' name='payment' value='cash' checked={paymentMethod === 'cash'} onChange={() => setPaymentMethod('cash')} />
+                        </div>
 
-            {paymentMethod === 'cash' && (
-                <button onClick={orderCompleted}> Confirm Order</button>
-            )}
 
-            {paymentMethod === 'online' && clientSecret && (
-                <Elements stripe={stripeTest} options={{ clientSecret }}>
-                    <StripeForm onSuccess={orderCompleted} />
-                </Elements>
-            )}
+                        <div className="payment-field">
+                      <span className="payment-text">💳 Online Payment</span>
+                      <input type='radio' name='payment' value='online' checked={paymentMethod === 'online'} onChange={() => setPaymentMethod('online')} />
+                       </div>
+                         </div>
 
+                        {paymentMethod === 'cash' && (
+
+                            <button onClick={orderCompleted}> Confirm Order</button>
+
+                        )}
+
+                        {paymentMethod === 'online' && clientSecret && (
+
+                            <Elements stripe={stripeTest} options={{ clientSecret }}>
+                                <StripeForm onSuccess={orderCompleted} />
+                            </Elements>
+
+                        )}
+
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
