@@ -34,37 +34,56 @@ const Orders = () => {
 
   return (
     <div className="orders-container">
-      <h2>Your Orders</h2>
+      <h2 className="orders-title">Your Orders</h2>
       {orders.length === 0 ? (
-        <p>No orders placed yet.</p>
+        <div className="empty-orders">
+          <p>No orders placed yet.</p>
+        </div>
       ) : (
-        orders.map((order, index) => {
-          const price = order.totalPrice ?? order.price ?? 0;
-          const caffeine = order.totalCaffeine ?? order.caffeine ?? 0;
+        <div className="orders-grid">
+          {orders.map((order, index) => {
 
-          return (
-        <div key={order._id} className="order-card">
-                   <h3>Order #{order.orderNumber || order.name || order._id || index + 1}</h3>
-              <p><strong>Total Price:</strong> {Number(price).toFixed(2)} BHD</p>
-              <p><strong>Total Caffeine:</strong> {caffeine}</p>
+            const price = order.totalPrice ?? order.price ?? 0;
 
-              {order.items && order.items.length > 0 && (
-                <p>
-                  <strong>Items:</strong>{' '}
-                  {order.items.map((item) => item.name || 'Item').join(', ')}
-                </p>
-              )}
+            const caffeine = order.totalCaffeine ?? order.caffeine ?? 0;
 
-              <div className="order-actions">
-                <Link to={`/orders/${order._id}`}>View Details</Link>
-                <button onClick={() => handleDelete(order._id)}>Delete Order</button>
+            return (
+              <div key={order._id} className="order-card">
+                <div className="order-header">
+
+                  <h3>Order #{order.orderNumber || order.name || order._id || index + 1}</h3>
+
+                </div>
+                <div className="order-body">
+                  <p><strong>Total Price:</strong> {Number(price).toFixed(2)} BHD</p>
+                  <p><strong>Total Caffeine:</strong> {caffeine}</p>
+
+
+                  {order.items && order.items.length > 0 && (
+
+
+                    <p className="order-items">
+                      <strong>Items:</strong>{' '}
+                      {order.items.map((item) => item.name || 'Item').join(', ')}
+
+                    </p>
+
+                  )}
+                </div>
+
+                <div className="order-actions">
+                  <Link to={`/orders/${order._id}`}>View Details</Link>
+                  <button onClick={() => handleDelete(order._id)}>Delete Order</button>
+
+                </div>
               </div>
-            </div>
-          );
-        })
-      )}
-    </div>
-  );
-};
 
+            );
+          })}
+
+        </div>
+      )};
+    </div>
+  )
+}
 export default Orders;

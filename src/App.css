@@ -305,6 +305,7 @@ button:disabled {
   gap: 12px;
   color: var(--color-input);
 }
+
 .cart-link-button {
   display: flex;
   flex-direction: column;
@@ -313,7 +314,8 @@ button:disabled {
   color: var(--color-input);
 }
 
-.quantity-item, .quantity-menu {
+.quantity-item,
+.quantity-menu {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -321,7 +323,8 @@ button:disabled {
   gap: 10px;
 }
 
-.quantity-item button, .quantity-menu button {
+.quantity-item button,
+.quantity-menu button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -353,7 +356,7 @@ button:disabled {
 .checkout-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color:#e2e8f0;
+  color: #e2e8f0;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -362,7 +365,7 @@ button:disabled {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 40px  80px;
+  padding: 40px 80px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -430,3 +433,196 @@ button:disabled {
   accent-color: #883A30;
   cursor: pointer;
 }
+
+
+.detail-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: "Rum Raisin", sans-serif;
+  color: #883A30;
+}
+
+.order-header {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+
+
+
+.order-header h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.75rem;
+  color: #883A30;
+}
+
+
+
+
+.summary-item {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #EBA7C3;
+}
+
+.summary-item strong {
+  color: #7B4255;
+  display: block;
+  font-size: 0.85rem;
+
+  margin-bottom: 0.2rem;
+}
+
+
+.order-items-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  color: #3B120E;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.order-item-card {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 0.85rem 1rem;
+  background-color: #ffffff;
+  border: 1px solid #eef0f4;
+  border-radius: 8px;
+}
+
+
+
+
+.orders-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding:20px;
+  
+
+  font-family: "Rum Raisin", sans-serif;
+  
+
+}
+
+.orders-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color:#f4f4f4;
+  margin-bottom: 1.5rem;
+  text-align: center;
+
+}
+
+.empty-orders {
+  text-align: center;
+  padding: 2.5rem;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  border: 1px dashed #d1d5db;
+  color: #7B4255;
+  font-size: 1rem;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.order-card {
+  background-color: #f4f4f4;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px #EBA7C3;
+  margin-bottom: 2rem;
+
+  
+}
+
+.menu-card:hover{
+  box-shadow:0 4px 12px #EBA7C3 ;
+}
+
+.order-card:hover {
+  box-shadow: 0 4px 12px #EBA7C3;
+}
+
+.order-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #883A30;
+  margin: 0 0 0.85rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.order-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+
+}
+
+.order-body p {
+  margin: 0;
+  font-size: 0.925rem;
+  color: #883A30;
+}
+
+.order-body strong {
+  color: #883A30;
+}
+
+
+.order-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f3f4f6;
+  
+}
+
+.view-details-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #7B4255;
+  text-decoration: none;
+}
+
+.view-details-link:hover {
+  color: #EBA7C3;
+  text-decoration: underline;
+}
+
+.delete-btn {
+  padding: 0.45rem 0.85rem;
+  background-color: #7B4255;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  
+}
+
+.delete-btn:hover {
+  background-color: #883A30;
+}
+
+
