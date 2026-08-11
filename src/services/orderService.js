@@ -1,5 +1,3 @@
-// import { data } from "react-router";
-
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/orders`;
 
 const index = async () => {
@@ -7,7 +5,7 @@ const index = async () => {
     const data = await res.json()
 
     if (!res.ok) {
-        throw new Error(`${res.status}: {data.message}`)
+        throw new Error(`${res.status}: ${data.message}`)
     }
 
     return data
@@ -18,7 +16,7 @@ const show = async (orderId) => {
     const data = await res.json()
 
     if (!res.ok) {
-        throw new Error(`${res.status}: {data.message}`)
+        throw new Error(`${res.status}: ${data.message}`)
 
     }
     return data
@@ -32,7 +30,7 @@ const create = async (formData) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
 
         },
         body: JSON.stringify(formData)
@@ -58,7 +56,7 @@ const update = async (orderId, formData) => {
     })
     const data = await res.json()
     if (!res.ok) {
-        throw new Error(`${res.status}: {data.message}`)
+        throw new Error(`${res.status}: ${data.message}`)
     }
 
     return data
@@ -74,7 +72,7 @@ const deleteOrder = async (orderId) => {
     const data = await res.json()
 
     if (!res.ok) {
-        throw new Error(`${res.status}: {data.message}`)
+        throw new Error(`${res.status}: ${data.message}`)
     }
 
     return data
@@ -86,7 +84,7 @@ const createPayment = async (payAmount) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-    
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({ payAmount })
     })
