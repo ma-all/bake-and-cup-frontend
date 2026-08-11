@@ -36,7 +36,16 @@ const Cart = (props) => {
         if (props.handlePlaceOrder) {
             await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
 
-        }
+   setErrorMessage('')
+  if (props.handlePlaceOrder) {
+    await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
+  }
+  
+
+        // if (handlePlaceOrder) {
+        //     await props.handlePlaceOrder(totalPrice, totalCaffeine, navigate)
+
+        // }
     }
 
     return (
@@ -70,7 +79,7 @@ const Cart = (props) => {
                 <p>Total Items: {props.cartItems ? props.cartItems.length : 0}</p>
                 <p>Total Caffeine {totalCaffeine}</p>
                 <p>Total Price {totalPrice.toFixed(2)} BHD</p>
-
+                
                 {errorMessage && <p>{errorMessage}</p>}
 
                 <div className="cart-link-button">

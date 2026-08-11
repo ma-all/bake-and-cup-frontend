@@ -1,4 +1,4 @@
-import { data } from "react-router";
+// import { data } from "react-router";
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/orders`;
 
@@ -27,10 +27,12 @@ const show = async (orderId) => {
 
 
 const create = async (formData) => {
+    const token = localStorage.getItem('token');
     const res = await fetch(BASE_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
 
         },
         body: JSON.stringify(formData)
@@ -38,7 +40,8 @@ const create = async (formData) => {
 
     const data = await res.json()
     if (!res.ok) {
-        throw new Error(`${res.status}: {data.message}`)
+        throw new Error(`${res.status}: ${data.message || data.error || 'Server Error'}`);
+        
     }
 
     return data
