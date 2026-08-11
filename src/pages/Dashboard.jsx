@@ -1,35 +1,36 @@
 import { useEffect, useState } from "react"
 import { index } from '../services/user'
+import almondCrossiant from '../assets/almond-crossiant.png'
 
 const Dashboard = (props) => {
 
-    const [allUsers, setAllUsers] = useState([])
+    // const [allUsers, setAllUsers] = useState([])
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const usersData =  await index()
-            setAllUsers(usersData)
-        }
-        fetchUsers()
+    // useEffect(() => {
+    //     const fetchUsers = async () => {
+    //         const usersData =  await index()
+    //         setAllUsers(usersData)
+    //     }
+    //     fetchUsers()
         
-    }, [])
+    // }, [])
 
     return (
-        <section>
+        <div className="home-page">
             <header>
-                <h1>Welcome {props.user.username}!</h1>
+                {/* <h1>Welcome {props.user.username} to </h1> */}
                 {/* <h2>View All the Users</h2> */}
             </header>
-            {/* {allUsers.map((user) => (
-                <div className="card">
-                    <header>
-                        <h1>
-                        {user.username}
-                        </h1>
-                    </header>
-                </div>
-            ))} */}
-        </section>
+           <div className="name-container">
+            <h1>Bake 
+                <br/>
+                & Cup
+            </h1>
+
+            {/* <img src={almondCrossiant} alt='almond crossiant' className="home-img" /> */}
+
+           </div>
+        </div>
     )
 }
 
