@@ -126,6 +126,4 @@ const MenuDetails = (props) => {
     )
 }
 
-
-
 export default MenuDetails

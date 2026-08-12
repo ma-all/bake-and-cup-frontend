@@ -23,14 +23,6 @@ const Orders = () => {
     fetchOrders()
   }, [])
 
-  // const handleDelete = async (orderId) => {
-  //   try {
-  //     await orderService.deleteOrder(orderId)
-  //     setOrders((prev) => prev.filter((order) => order._id !== orderId))
-  //   } catch (error) {
-  //     console.log('Error deleting order:', error)
-  //   }
-  // }
   const handleConfirmDelete = async () => {
     await orderService.deleteOrder(orderDeleteId)
     setOrders(orders.filter((order) => order._id !== orderDeleteId))

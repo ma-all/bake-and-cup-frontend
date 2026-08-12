@@ -11,14 +11,18 @@ https://github.com/ma-all/bake-and-cup-server
 ![alt text](image.png)
 
 ## Technologies Used (Frontend)
--**JS**
--**MongoDB**
--**Stripe**
---**CSS**
---**React**
---**lucide-react**
+- **JS**
+- **MongoDB**
+- **Stripe**
+- **CSS**
+- **React**
+- **lucide-react**
 
 ## Getting Started
+1. git clone https://github.com/ma-all/bake-and-cup-frontend.git
+2. npm install
+
+## How To Use
 1. Sign up to create a new account or sign in to if you already have an account.
 2. Click on Menu to view available items.
 3. Click on 'view details' to view the details of an item.
