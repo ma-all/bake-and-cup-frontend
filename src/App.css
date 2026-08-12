@@ -830,3 +830,16 @@ button:disabled {
 .error-page-link:hover {
   text-decoration: underline;
 }
+
+.delete-confirm {
+  background-color: var(--card-cream);
+  color: var(--color-card);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.delete-confirm button {
+  gap: 20px;
+  margin: 6px;
+  padding: 15px;
+}
