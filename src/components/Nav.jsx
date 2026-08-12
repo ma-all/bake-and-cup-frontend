@@ -26,7 +26,7 @@ const Nav = (props) => {
                     </ul>
                     <ul className="right-navbar">
                         <li >
-                            <Link to='cart' class='cart-icon-container'>
+                            <Link to='cart' className='cart-icon-container'>
                                 <ShoppingBasket size={25} />
                                 {props.cartItems.length > 0 && <span className="cart-icon">
                                     {props.cartItems.length}
