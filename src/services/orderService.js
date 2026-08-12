@@ -1,6 +1,7 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/orders`;
 
 const index = async () => {
+    try{
     const res = await fetch(BASE_URL, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -14,9 +15,15 @@ const index = async () => {
     }
 
     return data
+} catch(error){
+    console.log('Error fetching orders:', error)
+
+}
 }
 
+
 const show = async (orderId) => {
+    try{
     const res = await fetch(`${BASE_URL}/${orderId}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -29,11 +36,15 @@ const show = async (orderId) => {
 
     }
     return data
-}
+} catch(error){
+    console.log('Error fetching orders:', error)
+
+}}
 
 
 
 const create = async (formData) => {
+    try{
     const token = localStorage.getItem('token');
     const res = await fetch(BASE_URL, {
         method: 'POST',
@@ -52,9 +63,14 @@ const create = async (formData) => {
     }
 
     return data
-}
+} catch(error){
+    console.log('Error fetching orders:', error)
+
+}}
+
 
 const update = async (orderId, formData) => {
+    try{
     const res = await fetch(`${BASE_URL}/${orderId}`, {
         method: 'PUT',
         headers: {
@@ -72,9 +88,13 @@ const update = async (orderId, formData) => {
     return data
 
 
-}
+}catch(error){
+    console.log('Error fetching orders:', error)
+
+}}
 
 const deleteOrder = async (orderId) => {
+    try{
     const res = await fetch(`${BASE_URL}/${orderId}`, {
         method: 'DELETE',
         headers: {
@@ -91,7 +111,10 @@ const deleteOrder = async (orderId) => {
 
     return data
 
-}
+}catch(error){
+    console.log('Error fetching orders:', error)
+
+}}
 
 const createPayment = async (payAmount) => {
     const res = await fetch(`${BASE_URL}/create-payment`, {
