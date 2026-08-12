@@ -10,7 +10,7 @@ https://github.com/ma-all/bake-and-cup-server
 ## Screenshot
 ![alt text](image.png)
 
-## Technologies Used (Backend)
+## Technologies Used (Frontend)
 -**JS**
 -**MongoDB**
 -**Stripe**
