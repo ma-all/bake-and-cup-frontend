@@ -466,7 +466,8 @@ button:disabled {
   cursor: pointer;
 }
 
-.detail-container {
+.detail-container-order {
+  display: flex;
   max-width: 1600px;
   margin: 2.5rem auto;
   padding: 3rem;

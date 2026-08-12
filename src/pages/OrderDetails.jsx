@@ -28,7 +28,7 @@ const OrderDetails = () => {
   if (!order) return <p>Order not found.</p>
 
   return (
-    <div className="detail-container">
+    <div className="detail-container-order">
       <div className="order-header">
         <h2 className="order-titel">Order Details</h2>
         <p className="summary-item">
