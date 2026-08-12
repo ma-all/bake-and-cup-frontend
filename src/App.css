@@ -476,6 +476,7 @@ button:disabled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   font-family: "Rum Raisin", sans-serif;
   color: #883A30;
+  gap: 20px;
 }
 
 .order-header {
