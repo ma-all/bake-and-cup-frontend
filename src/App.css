@@ -662,13 +662,14 @@ button:disabled {
 
 .detail-container {
   background-color: var(--card-cream);
-  padding: 4rem;
-  max-width: 800px;
+  padding: 3rem;
+  max-width: 1600px;
   margin: 0 auto 2rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+  border-radius: 15px;
 }
 
 .img-detail {
