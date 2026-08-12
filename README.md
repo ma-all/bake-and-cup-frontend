@@ -1,16 +1,43 @@
-# React + Vite
+# Project Name
+Bake & Cup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Overview
+An online cafe that allows users to order coffee drinks, non-coffee drinks, pastries.
 
-Currently, two official plugins are available:
+## Backend Link
+https://github.com/ma-all/bake-and-cup-server
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Screenshot
+![alt text](image.png)
 
-## React Compiler
+## Technologies Used (Backend)
+-**JS**
+-**MongoDB**
+-**Stripe**
+--**CSS**
+--**React**
+--**lucide-react**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
+1. Sign up to create a new account or sign in to if you already have an account.
+2. Click on Menu to view available items.
+3. Click on 'view details' to view the details of an item.
+4. Click on 'add to cart' to add an item to cart, and increase or decrease quantity.
+5. Click on 'place order' to proceed to payment.
+6. User can pay cash on delivery or by card.
+7. Click on 'view order details' to view the details of order after payment.
+8. Navigate to orders to view all the orders.
+9. Click on 'view details' to add a review of an item.
 
-## Expanding the ESLint configuration
+## Features
+- Add items to cart.
+- Pay with cash or card.
+- View order.
+- Delete an order.
+- Add review of an item.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Future Enhancements
+- Add more items.
+- Allow new ways of payment.
+- Allow users to edit their orders.
+- Allow users to recommend items to other users.
