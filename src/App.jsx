@@ -54,13 +54,11 @@ const App = () => {
     setCartItems([...cartItems, item])
   }
 
-
   const handlePlaceOrder = async (cartItems, totalPrice, totalCaffeine, paymentMethod) => {
     try {
       const itemIds = cartItems.map((item) => item._id || item.id);
 
       console.log("Cart items array being sent to backend:", itemIds);
-
 
       const orderData = {
         user: user._id,
@@ -80,10 +78,6 @@ const App = () => {
     }
   }
 
-
-
-
-  //update orders 
   const handleUpdateItem = async (itemId, updatedData) => {
     try {
       const updateItem = await update(itemId, updatedData)
@@ -97,8 +91,6 @@ const App = () => {
     }
   }
 
-
-  //delete 
   const handleDeleteItem = async (itemId) => {
     try {
       const cartItemIndex = cartItems.findIndex((item) => item._id === itemId)
@@ -113,7 +105,6 @@ const App = () => {
       console.log('Failed to remove item', error)
     }
   }
-
 
   return (
     <div>

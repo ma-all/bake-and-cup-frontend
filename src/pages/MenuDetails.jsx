@@ -2,6 +2,7 @@ import { useParams } from "react-router"
 import * as reviewService from '../services/reviews'
 import { useEffect, useState } from "react"
 
+
 const MenuDetails = (props) => {
 
     const { menuItemId } = useParams()
@@ -11,6 +12,8 @@ const MenuDetails = (props) => {
     const [comment, setComment] = useState('')
 
     const [updateReviewId, setUpdateReviewId] = useState(null)
+
+    const [reviewDeleteId, setReviewDeleteId] = useState(null)
 
     const menuItem = props.menuItems.find((item) => {
         return item._id === menuItemId
@@ -51,9 +54,10 @@ const MenuDetails = (props) => {
         setComment(rev.comment)
     }
 
-    const handleDeleteReview = async (reviewId) => {
-        await reviewService.deleteReview(menuItemId, reviewId)
-        setReview(review.filter((rev) => rev._id !== reviewId))
+    const handleConfirmDelete = async () => {
+        await reviewService.deleteReview(menuItemId, reviewDeleteId)
+        setReview(review.filter((rev) => rev._id !== reviewDeleteId))
+        setReviewDeleteId(null)
     }
 
     return (
@@ -100,7 +104,7 @@ const MenuDetails = (props) => {
                                     <>
                                     <div className="review-actions">
                                         <button onClick={() => handleUpdateReview(rev)}> Edit </button>
-                                        <button onClick={() => handleDeleteReview(rev._id)}> Delete </button>
+                                        <button onClick={() => setReviewDeleteId(rev._id)}> Delete </button>
                                         </div>
                                     </>
                                 )}
@@ -109,11 +113,17 @@ const MenuDetails = (props) => {
                     })
                 )}
                 </div>
+                <br />
+                {reviewDeleteId && (
+                    <center><div className="delete-confirm">
+                        <p> Are you sure you want to delete this review? </p>
+                        <button onClick={() => handleConfirmDelete(reviewDeleteId)}> Yes </button>
+                        <button onClick={() => setReviewDeleteId(null)}> Cancel </button>
+                    </div></center>
+                )}
             </div>
         </>
     )
 }
-
-
 
 export default MenuDetails

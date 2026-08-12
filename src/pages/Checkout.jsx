@@ -78,12 +78,7 @@ const Checkout = (props) => {
         }
     }, [paymentMethod, totalPrice])
 
-
-
-
-
     const orderCompleted = async () => {
-        // Make sure props.cartItems is passed here!
         const newOrder = await props.handlePlaceOrder(
             props.cartItems,
             totalPrice,
@@ -97,8 +92,6 @@ const Checkout = (props) => {
         }
     };
 
-
-    //this should only show if the user pays and it goes trough
     if (orderPlaced) {
         return (
             <div className="order-placed-container">

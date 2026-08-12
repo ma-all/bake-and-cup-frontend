@@ -4,17 +4,6 @@ import almondCrossiant from '../assets/almond-crossiant.png'
 
 const Dashboard = (props) => {
 
-    // const [allUsers, setAllUsers] = useState([])
-
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         const usersData =  await index()
-    //         setAllUsers(usersData)
-    //     }
-    //     fetchUsers()
-        
-    // }, [])
-
     return (
         <div className="home-page">
             <header>

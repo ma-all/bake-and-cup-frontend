@@ -6,6 +6,8 @@ const Orders = () => {
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
 
+  const [orderDeleteId, setOrderDeleteId] = useState(null)
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -21,13 +23,10 @@ const Orders = () => {
     fetchOrders()
   }, [])
 
-  const handleDelete = async (orderId) => {
-    try {
-      await orderService.deleteOrder(orderId)
-      setOrders((prev) => prev.filter((order) => order._id !== orderId))
-    } catch (error) {
-      console.log('Error deleting order:', error)
-    }
+  const handleConfirmDelete = async () => {
+    await orderService.deleteOrder(orderDeleteId)
+    setOrders(orders.filter((order) => order._id !== orderDeleteId))
+    setOrderDeleteId(null)
   }
 
   if (loading) return <p>Loading orders....</p>
@@ -73,7 +72,7 @@ const Orders = () => {
 
                 <div className="order-actions">
                   <Link to={`/orders/${order._id}`} className="view-details-link">View Details</Link>
-                  <button onClick={() => handleDelete(order._id)}>Delete Order</button>
+                  <button onClick={() => setOrderDeleteId(order._id)}>Delete Order</button>
 
                 </div>
               </div>
@@ -83,6 +82,14 @@ const Orders = () => {
 
         </div>
       )};
+      <br />
+      {orderDeleteId && (
+        <center><div className="delete-confirm">
+          <p> Are you sure you want to delete this review? </p>
+          <button onClick={() => handleConfirmDelete(orderDeleteId)}> Yes </button>
+          <button onClick={() => setOrderDeleteId(null)}> Cancel </button>
+        </div></center>
+      )}
     </div>
   )
 }
