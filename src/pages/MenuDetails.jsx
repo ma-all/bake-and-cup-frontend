@@ -58,6 +58,7 @@ const MenuDetails = (props) => {
 
     return (
         <>
+        <div className="menu-details-wrapper">
             <div className="detail-container">
                 <img src={menuItem.img} alt={menuItem.name} className="img-detail" />
                 <div className="details">
@@ -70,7 +71,7 @@ const MenuDetails = (props) => {
                 </div>
             </div>
 
-            <div>
+            <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <h2>{updateReviewId ? 'Edit Review' : 'Add A Review'}</h2>
 
@@ -81,7 +82,7 @@ const MenuDetails = (props) => {
                 </form>
             </div>
 
-            <div>
+            <div className="reviews-section">
                 <h3>Reviews</h3>
 
                 {review.length === 0 ? (
@@ -93,18 +94,21 @@ const MenuDetails = (props) => {
                         const isReviwer = props.user && props.user._id === reviwerId
 
                         return (
-                            <div key={rev._id}>
+                            <div key={rev._id} className="review-card">
                                 <p>{rev.comment}</p>
                                 {isReviwer && (
                                     <>
+                                    <div className="review-actions">
                                         <button onClick={() => handleUpdateReview(rev)}> Edit </button>
                                         <button onClick={() => handleDeleteReview(rev._id)}> Delete </button>
+                                        </div>
                                     </>
                                 )}
                             </div>
                         )
                     })
                 )}
+                </div>
             </div>
         </>
     )
