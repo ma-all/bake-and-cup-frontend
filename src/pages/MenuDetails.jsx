@@ -72,7 +72,7 @@ const MenuDetails = (props) => {
             </div>
 
             <div className="form-container">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="form-review">
                     <h2>{updateReviewId ? 'Edit Review' : 'Add A Review'}</h2>
 
                     <textarea name='addReview' value={comment} required onChange={(event) => setComment(event.target.value)} />
