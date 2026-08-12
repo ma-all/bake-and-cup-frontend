@@ -48,14 +48,8 @@ const OrderDetails = () => {
           <div className="items-list">
             {order.items.map((item, index) => (
               <div key={item._id || index} className="order-item-card">
-
                 <div className="item-info">
-                  <p className="item-name">
-
-                  <strong>{item.name || item}</strong>
-
-                  </p>
-                 
+                  <strong>{item.name || item} - {item.price} BHD</strong>
                 </div>
               </div>
             ))}
