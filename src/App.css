@@ -818,3 +818,15 @@ button:disabled {
   background-color: var(--color-card);
   color: var(--color-light);
 }
+
+.error-page {
+  color: var(--color-light);
+}
+
+.error-page-link {
+  gap: 10px;
+}
+
+.error-page-link:hover {
+  text-decoration: underline;
+}
