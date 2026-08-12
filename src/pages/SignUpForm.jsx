@@ -14,6 +14,7 @@ const SignUpForm = (props) => {
 
     const [formData, setFormData] = useState(initialState)
     const [message, setMessage] = useState('')
+    const[Error , setError] = useState('')
 
     const handleChange = (event) => {
         setFormData({...formData, [event.target.name]: event.target.value})
@@ -21,6 +22,10 @@ const SignUpForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
+            if(formData.password.length<6){
+                return setError('Password must be at least 6')
+            }
+
             const newUser = await signUp(formData)
             props.setUser(newUser)
             setFormData(initialState)
@@ -46,9 +51,9 @@ const SignUpForm = (props) => {
                 Username:
                 <input type="text" name="username" onChange={handleChange} value={formData.username} required className="signForm-input" />
                 Password:
-                <input type="password" name="password" onChange={handleChange} value={formData.password} required className="signForm-input" />
+                <input type="password" name="password" onChange={handleChange} value={formData.password} required className="signForm-input" minLength={6} />
                 Confirm Password:
-                <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required className="signForm-input" />
+                <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required className="signForm-input"/>
                 <br/>
                 <div className="actions">
                     <button type="submit" disabled={!isFormValid()}>Sign Up</button>
