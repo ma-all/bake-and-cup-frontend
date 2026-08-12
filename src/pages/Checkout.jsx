@@ -51,7 +51,7 @@ const Checkout = (props) => {
     const [orderCreatedId, setOrderCreatedId] = useState(null)
 
     const [clientSecret, setClientSecret] = useState('')
-    const [item,setItem]=useState('')
+    const [item, setItem] = useState('')
 
     const navigate = useNavigate()
 
@@ -82,32 +82,33 @@ const Checkout = (props) => {
 
 
 
-const orderCompleted = async () => {
-    // Make sure props.cartItems is passed here!
-    const newOrder = await props.handlePlaceOrder(
-        props.cartItems, 
-        totalPrice, 
-        totalCaffeine, 
-        paymentMethod
-    );
+    const orderCompleted = async () => {
+        // Make sure props.cartItems is passed here!
+        const newOrder = await props.handlePlaceOrder(
+            props.cartItems,
+            totalPrice,
+            totalCaffeine,
+            paymentMethod
+        );
 
-    if (newOrder && (newOrder._id || newOrder.id)) {
-        setOrderCreatedId(newOrder._id || newOrder.id);
-        setOrderPlaced(true);
-    }
-};
+        if (newOrder && (newOrder._id || newOrder.id)) {
+            setOrderCreatedId(newOrder._id || newOrder.id);
+            setOrderPlaced(true);
+        }
+    };
 
 
     //this should only show if the user pays and it goes trough
     if (orderPlaced) {
         return (
-            <>
-                <h2>Order Placed.</h2>
-
-                <button onClick={() => navigate(`/orders/${orderCreatedId}`)}>
-                    View Order Details
-                </button>
-            </>
+            <div className="order-placed-container">
+                <h2 className="order-placed">Order Placed.</h2>
+                <div className="placed-btn">
+                    <button onClick={() => navigate(`/orders/${orderCreatedId}`)} className="order-placed-btn">
+                        View Order Details
+                    </button>
+                </div>
+            </div>
         )
     }
 
@@ -123,24 +124,23 @@ const orderCompleted = async () => {
                         <div className="summary-row">
                             <p className="summary-label">Total Items: {totalItems}</p>
                             <p className="summary-value">Total Items: {totalPrice.toFixed(2)} BHD</p>
-                            <p className="summary-label">Items : {item}</p>
                             <br />
                         </div>
 
 
-                    <div className="payment-method-block">
-                        <h3 className="section-title">Choose Payment Method:</h3>
-                        <div className="payment-field">
-                       <span className="payment-text"> 💵 Cash on Delivery</span>
-                       <input type='radio' name='payment' value='cash' checked={paymentMethod === 'cash'} onChange={() => setPaymentMethod('cash')} />
+                        <div className="payment-method-block">
+                            <h3 className="section-title">Choose Payment Method:</h3>
+                            <div className="payment-field">
+                                <span className="payment-text"> 💵 Cash on Delivery</span>
+                                <input type='radio' name='payment' value='cash' checked={paymentMethod === 'cash'} onChange={() => setPaymentMethod('cash')} />
+                            </div>
+
+
+                            <div className="payment-field">
+                                <span className="payment-text">💳 Online Payment</span>
+                                <input type='radio' name='payment' value='online' checked={paymentMethod === 'online'} onChange={() => setPaymentMethod('online')} />
+                            </div>
                         </div>
-
-
-                        <div className="payment-field">
-                      <span className="payment-text">💳 Online Payment</span>
-                      <input type='radio' name='payment' value='online' checked={paymentMethod === 'online'} onChange={() => setPaymentMethod('online')} />
-                       </div>
-                         </div>
 
                         {paymentMethod === 'cash' && (
 
