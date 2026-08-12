@@ -14,6 +14,7 @@ import * as ordersService from "./services/orderService"
 import Checkout from "./pages/Checkout"
 import Orders from "./pages/Orders"
 import OrderDetails from './pages/OrderDetails'
+import Error from './pages/Error'
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -128,6 +129,7 @@ const App = () => {
           <Route path='checkout' element={<Checkout cartItems={cartItems} handlePlaceOrder={handlePlaceOrder} />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:orderId" element={<OrderDetails />} />
+          <Route path='*' element={<Error />} />
         </Routes>
       </main>
     </div>
