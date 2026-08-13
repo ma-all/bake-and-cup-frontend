@@ -85,7 +85,7 @@ const Orders = () => {
       <br />
       {orderDeleteId && (
         <center><div className="delete-confirm">
-          <p> Are you sure you want to delete this review? </p>
+          <p> Are you sure you want to delete this order? </p>
           <button onClick={() => handleConfirmDelete(orderDeleteId)}> Yes </button>
           <button onClick={() => setOrderDeleteId(null)}> Cancel </button>
         </div></center>
